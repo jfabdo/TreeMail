@@ -1,14 +1,17 @@
 Written by Jack Abdo
 
-This is a two part application that consists of an Outlook macro and a Python 
-Web Application. It works to reduce clutter from long email chains by 
-coordinating with the web application.
+Python3 script that summarizes long text patterns. Pair it with an email plugin to receive your. Can be broken out as an API.
 
-NOTICE: VERY IMPORTANT
-Please do not share the key file. It contains sensitive information for our servers and information.
+Example code:
+
+from Summarize import summarize
+contents = open('TestArticle.txt').read()
+
+for i in summarize(contents):
+  print(i.strip(),end='')
+
 
 API:
-
 Summarize.py
 One should import summarize.summarize to use the main module. Other modules may be useful as well
 
