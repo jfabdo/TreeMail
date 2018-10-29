@@ -76,11 +76,11 @@ def countwords(textstring = ""): #returns the word frequency, wrapper for wordfr
 
 def returntop(wordcount):#returns the most frequently used words above severity threshold. CALLS: sortwords,mostcommonwords
     global severity
-    wordssorted = sortwords(wordcount)
-    commonwords = mostcommonwords()
+    wordssorted = sortwords(wordcount) #pulls all the words in the article, sorted
+    commonwords = mostcommonwords() #pulls all the common words
     mostfrequentwords = []
     for i in wordssorted:
-        if (wordcount[i] > severity) and (i not in commonwords):
+        if (wordcount[i] > severity) and (i not in commonwords): 
             mostfrequentwords.append(i)
     return mostfrequentwords
 
@@ -98,7 +98,9 @@ def countworddensity(article,wordcount): #counts the top-word density in the sen
 
 def summarize(article): #picks the top sentences, CALLS:countworddensity,top
    wordcount = countwords(article)
-   frequencies = returntop(wordcount)
+   frequencies = 
+    
+    (wordcount)
    sentencewordfreq = countworddensity(article,frequencies) #list of keyword densities per sentence
    #freqlist = deepcopy(wordcount)
    summarysentences = []
