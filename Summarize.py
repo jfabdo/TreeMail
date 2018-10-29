@@ -98,9 +98,7 @@ def countworddensity(article,wordcount): #counts the top-word density in the sen
 
 def summarize(article): #picks the top sentences, CALLS:countworddensity,top
    wordcount = countwords(article)
-   frequencies = 
-    
-    (wordcount)
+   frequencies = returntop(wordcount)
    sentencewordfreq = countworddensity(article,frequencies) #list of keyword densities per sentence
    #freqlist = deepcopy(wordcount)
    summarysentences = []
