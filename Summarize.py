@@ -54,7 +54,7 @@ def removewhitespace(textstring = ""): #strips out all the whitespace into a sin
 def sortwords(wordcount): #automagic sort
     return sorted(wordcount,key=wordcount.get,reverse=True)
 
-def wordfreq(textstring): #takes a string of words and returns the word frequency
+def wordfreq(textstring): #takes a string of words and returns a dict showing how often those words are used
     wordcount = {} #
     for i in textstring.split(" "):#go through every word in the teststring
         if i in wordcount: #if in the dictionary, increment, otherwise add it
@@ -63,31 +63,34 @@ def wordfreq(textstring): #takes a string of words and returns the word frequenc
             wordcount[i] = 1
     return wordcount #return subsequent dictionary of word frequency
 
-def countwords(textstring = ""): #returns the word frequency, wrapper for wordfreq, cleans text of punctuation and whitespace, calls whitespace and wordfreq
+#returns the word frequency, wrapper for wordfreq, cleans text of punctuation and whitespace, calls whitespace and wordfreq
+def countwords(textstring = ""): 
     if not textstring: #if the summary is empty, return nothing
         return {}
     
     for i in punctuation:
         textstring = removewhitespace(textstring.replace(i,"")) #remove all punctuation iteratively
+    
+    wordfrequencies = wordfreq(textstring)
+    return wordfrequencies
 
-    return wordfreq(textstring)
-
-#Inter-Dynamic
-
-def returntop(wordcount):#returns the most frequently used words above severity threshold. CALLS: sortwords,mostcommonwords
+#returns all the words that  used words above severity threshold. CALLS: sortwords,mostcommonwords
+def returntop(wordcount):
     global severity
     wordssorted = sortwords(wordcount) #pulls all the words in the article, sorted
     commonwords = mostcommonwords() #pulls all the common words
-    mostfrequentwords = []
+    mostfrequentwords = [] #A
     for i in wordssorted:
         if (wordcount[i] > severity) and (i not in commonwords): 
             mostfrequentwords.append(i)
     return mostfrequentwords
 
-def countworddensity(article,wordcount): #counts the top-word density in the sentences. CALLS:NOTHING
-   sentencelist = article.split(".")
+#counts the number of "frequent words" in each sentence. CALLS:NOTHING
+#returns an ordered list of the number of words in each sentence.
+def countworddensity(article,wordcount): 
+   sentencelist = article.split(".") #split article by periods
    sentencewordfreq = []
-   for i in range(len(sentencelist)):
+   for i in range(len(sentencelist)): #checks each sentence for the words on the most frequent chart. 
       keywordcount = 0
       ii = sentencelist[i]
       for k in wordcount:
